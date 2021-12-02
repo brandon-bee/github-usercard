@@ -4,8 +4,8 @@ import axios from 'axios';
     (replacing the placeholder with your Github name):
     https://api.github.com/users/brandon-bee
 */
-function getUser() {
-  axios.get('https://api.github.com/users/brandon-bee')
+function getUser(username) {
+  axios.get(`https://api.github.com/users/${username}`)
     .then(resp => {
       createCardData(resp.data);
     })
@@ -14,7 +14,7 @@ function getUser() {
     })
     .finally(() => console.log('DONE'))
 }
-getUser();
+getUser('brandon-bee');
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -44,6 +44,9 @@ function createCardData(obj) {
     user, and adding that card to the DOM.
 */
 const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+followersArray.forEach(user => {
+  getUser(user);
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
